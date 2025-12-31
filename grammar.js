@@ -90,7 +90,12 @@ module.exports = grammar({
       token(
         seq(
           /[\p{L}\p{N}_]/u, // first char: letter, number, or underscore
-          /[\p{L}\p{N}:_\/-]*/u, // rest: also allows colon, slash, hyphen
+          repeat(
+            seq(
+              /[ ]?/, 
+              /[\p{L}\p{N}:_\/-]+/u, // rest: also allows colon, slash, hyphen
+            )
+          )
         ),
       ),
 
